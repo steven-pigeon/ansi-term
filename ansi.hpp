@@ -44,6 +44,10 @@ namespace ansi
       extern const char * cyan;
       extern const char * white; // normal may appear gray
 
+      // should be one type, but this allows
+      // automatic selection of foreground or
+      // background codes
+      //
       struct _rgb { int r,g,b; };
       inline _rgb rgb(int r,int g,int b) { return {r,g,b}; }
 
@@ -72,7 +76,7 @@ namespace ansi
 
       struct _rgb { int r,g,b; };
       inline _rgb rgb(int r,int g,int b) { return {r,g,b}; }
-
+    
       inline std::ostream & operator<<(std::ostream & out, _rgb r)
        {
         out << "\e[48;2;" << r.r << ";" << r.g << ";" << r.b << "m";
@@ -107,7 +111,20 @@ namespace ansi
     extern const char * clear;
    } // namespace screen
 
+
+
+
  } // namespace ansi
+
+
+  // ansi::color::foreground::X11::...
+  // ansi::color::background::X11::...
+  #include <x11-foreground.hpp>
+  #include <x11-background.hpp>
+
+  // other color sets would go here
+  // ansi::color::foreground::c64::...
+  // ansi::color::background::c64::...
 
 #endif
   // __MODULE_ANSI_CONSOLE_CODES__

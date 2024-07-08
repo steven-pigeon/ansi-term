@@ -59,8 +59,9 @@ namespace ansi
       const char * white="\e[47m"; // normal may appear gray
 
      } // namespace background
+    
    } // namespace color
-
+  
   namespace cursor
    {
     const char * save="\e[s"; // NOT a stack! SHAME!

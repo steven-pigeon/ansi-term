@@ -66,7 +66,16 @@ int main()
     std::cout << std::endl;
    }
 
-  std::cout << ansi::color::reset;
+  std::cout
+   << ansi::color::foreground::X11::orange
+   << ansi::color::background::X11::alice_blue << "X11 Colors"
+   << std::endl;
+
+  std::cout << ansi::color::foreground::reset << ansi::color::background::reset;
+
+  // be warned: reseting after a new line does
+  // not affect the *already* printed new line
+  std::cout << "reset" << std::endl;
 
   for (int r=0;r<256;r+=32)
    {
