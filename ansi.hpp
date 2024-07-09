@@ -111,20 +111,17 @@ namespace ansi
     extern const char * clear;
    } // namespace screen
 
+} // namespace ansi
 
 
+// ansi::color::foreground::X11::...
+// ansi::color::background::X11::...
+#include <x11-foreground.hpp>
+#include <x11-background.hpp>
 
- } // namespace ansi
-
-
-  // ansi::color::foreground::X11::...
-  // ansi::color::background::X11::...
-  #include <x11-foreground.hpp>
-  #include <x11-background.hpp>
-
-  // other color sets would go here
-  // ansi::color::foreground::c64::...
-  // ansi::color::background::c64::...
+// other color sets would go here
+// ansi::color::foreground::c64::...
+// ansi::color::background::c64::...
 
 #endif
   // __MODULE_ANSI_CONSOLE_CODES__
