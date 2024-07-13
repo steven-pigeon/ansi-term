@@ -85,5 +85,47 @@ int main()
     std::cout << ansi::color::background::reset << std::endl;
    }
 
+  std::cout << std::endl;
+  for (int row=0;row<16;row++)
+   {
+    for(int col=0;col<16;col++)
+     std::cout << ansi::color::foreground::palette(row*16+col)
+               << 'X';
+    std::cout << std::endl;
+   }
+
+  std::cout << ansi::color::reset << std::endl;
+  for (int row=0;row<16;row++)
+   {
+    for(int col=0;col<16;col++)
+     std::cout << ansi::color::background::palette(row*16+col)
+               << 'X';
+
+    // to avoid bands
+    std::cout << ansi::color::reset << std::endl;
+   }
+
+  std::cout << ansi::color::reset << std::endl;
+    
+  // 666 palette
+  for (int r=0;r<6;r++)
+   {
+    for (int g=0;g<6;g++)
+      for (int b=0;b<6;b++)
+       std::cout << ansi::color::foreground::rgb666(r,g,b)
+                 << 'X';
+    std::cout << ansi::color::reset << std::endl;
+   }
+
+  for (int r=0;r<6;r++)
+   {
+    for (int g=0;g<6;g++)
+     for (int b=0;b<6;b++)
+      std::cout << ansi::color::background::rgb666(r,g,b)
+                << 'X';
+    std::cout << ansi::color::reset << std::endl;
+   }
+
+  
   return 0;
  }

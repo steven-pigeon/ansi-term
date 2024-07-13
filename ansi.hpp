@@ -46,16 +46,36 @@ namespace ansi
 
       // should be one type, but this allows
       // automatic selection of foreground or
-      // background codes
+      // background codes, and palette vs RGB24
       //
       struct _rgb { int r,g,b; };
       inline _rgb rgb(int r,int g,int b) { return {r,g,b}; }
 
+
+      // Xterm-256 color palette.
+
+      // 0-15: are std VT100 colors (black, dark red, dark green, dark
+      //       yellow ("olive"), dark blue, dark magenta ("purple"), dark
+      //       cyan, "bright gray", gray, red, green, yellow, blue, magenta,
+      //       cyan, white
+      //
+      // 232-255: very dark gray (not black) to pale gray (not white)
+      //
+      // 16-231: 216 "web-safe" 6x6x6 colors 16+(36*red)+(6*green)+(blue);
+      struct _pal { int p; };
+      inline _pal palette(int p) { return {p}; }
+      inline _pal rgb666(int r, int g, int b){ return {16+36*r+6*g+b}; }
+
       inline std::ostream & operator<<(std::ostream & out, _rgb r)
        {
-        out << "\e[38;2;" << r.r << ";" << r.g << ";" << r.b << "m";
-        return out;
+        return out << "\e[38;2;" << r.r << ';' << r.g << ';' << r.b << 'm';
        }
+
+      inline std::ostream & operator<<(std::ostream & out, _pal p)
+       {
+        return out << "\e[38;5;" << p.p << 'm';
+       }
+
 
     } // namespace foreground
 
@@ -76,12 +96,21 @@ namespace ansi
 
       struct _rgb { int r,g,b; };
       inline _rgb rgb(int r,int g,int b) { return {r,g,b}; }
+
+      struct _pal { int p; };
+      inline _pal palette(int p) { return {p}; }
+      inline _pal rgb666(int r, int g, int b){ return {16+36*r+6*g+b}; }
     
       inline std::ostream & operator<<(std::ostream & out, _rgb r)
        {
-        out << "\e[48;2;" << r.r << ";" << r.g << ";" << r.b << "m";
-        return out;
+        return out << "\e[48;2;" << r.r << ";" << r.g << ";" << r.b << "m";
        }
+
+      inline std::ostream & operator<<(std::ostream & out, _pal p)
+       {
+        return out << "\e[48;5;" << p.p << 'm';
+       }
+      
      } // namespace background
    } // namespace color
 
