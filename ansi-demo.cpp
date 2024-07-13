@@ -126,6 +126,11 @@ int main()
     std::cout << ansi::color::reset << std::endl;
    }
 
+  // grays
+  for (int g=0;g<24;g++)
+   std::cout << ansi::color::background::gray(g) << ' ';
+
+  std::cout << ansi::color::reset << std::endl;
   
   return 0;
  }

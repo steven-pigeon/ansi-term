@@ -65,6 +65,7 @@ namespace ansi
       struct _pal { int p; };
       inline _pal palette(int p) { return {p}; }
       inline _pal rgb666(int r, int g, int b){ return {16+36*r+6*g+b}; }
+      inline _pal gray(int g) { return {232+g}; }
 
       inline std::ostream & operator<<(std::ostream & out, _rgb r)
        {
@@ -100,6 +101,7 @@ namespace ansi
       struct _pal { int p; };
       inline _pal palette(int p) { return {p}; }
       inline _pal rgb666(int r, int g, int b){ return {16+36*r+6*g+b}; }
+      inline _pal gray(int g) { return {232+g}; }
     
       inline std::ostream & operator<<(std::ostream & out, _rgb r)
        {
